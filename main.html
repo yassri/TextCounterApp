@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Text Counter App</title>
+<link rel="stylesheet" href="styles/main.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/Remixicon/remixicon.css" />
+</head>
+<body>
+
+<div class="content">
+
+	<div class="top-bar">
+		<div class="main-title">
+			<h1>Text Counter</h1>
+			<h2>A Very Simple Text Counter</h2>
+		</div>
+		<nav>
+			<ul>
+				<li><i class="ri-github-fill"></i></li>
+				<li onclick="showSettingsDialog()"><i class="ri-settings-5-line"></i></li>
+				<li onclick="showAboutDialog()"><i class="ri-information-line"></i></li>
+			</ul>
+		</nav>
+	</div>
+	<div class="about-dialog" id="about_dialog" style=" display: none; ">
+		<div class="dialog-about">
+			<div class="close-dialog" onclick="hideAboutDialog()"><i class="ri-close-line"></i></div>
+			<i class="ri-information-line" style=" font-size: 100px; color: #9b9b9b; "></i>
+			<h3>This is a simple web app that allows you to easily count any type of text content by simply typing anything into the textarea.</h3>
+		</div>
+	</div>
+	<div class="app-container">
+		<div class="text-area-container">
+		<div class="backdrop" id="highlight-container" style="display: none;">
+			<div class="highlights" id="highlight">
+			  <!-- cloned text with <mark> tags here -->
+			</div>
+		  </div>
+			<textarea id="input" class="data-input" placeholder="Type Anyting Here ..."></textarea>
+		</div>
+		
+		<div id="data" class="data-panel">
+			<div class="data-container">
+				<div class="count-container" id="chars-panel">
+					<p class="count_text">Characters :</p>
+					<p class="counter" id="char">00</p>
+				</div>
+				<div class="count-container" id="words-panel">
+					<p class="count_text">Words :</p>
+					<p class="counter" id="word">00</p>
+				</div>
+				<div class="count-container" id="no_spaces_panel">
+					<p class="count_text">Characters <sup style=" font-size: 11px; color: #585858;">(no spaces)</sup> :</p>
+					<p class="counter" id="no_char">00</p>
+				</div>
+				<div class="count-container" id="sentences_panel">
+					<p class="count_text">Sentences :</p>
+					<p class="counter" id="sentence">00</p>
+				</div>
+				<div class="count-container" id="paragraphs_panel" style=" border-bottom: 1px solid #dddddd; margin-bottom: 5px; padding-bottom: 10px; ">
+					<p class="count_text">Paragraphs :</p>
+					<p class="counter" id="paragraph">00</p>
+				</div>
+				<div class="count-container" id="white_spaces_panel">
+					<p class="count_text">White Spaces :</p>
+					<p class="counter" id="space">00</p>
+				</div>
+				<div class="count-container" id="vowels_panel">
+					<p class="count_text">Vowels :</p>
+					<p class="counter" id="vowel">00</p>
+				</div>
+				<div class="count-container" id="average_panel" style=" border-bottom: 1px solid #dddddd; margin-bottom: 5px; padding-bottom: 10px; ">
+					<p class="count_text">Average word lenght :</p>
+					<p class="counter" id="awl">00</p>
+				</div>
+				<div class="count-container" id="read_panel">
+					<p class="count_text">Read Time :</p>
+					<p class="counter" id="read">00:00</p>
+				</div>
+				<div class="count-container" id="write_panel">
+					<p class="count_text">Write Time :</p>
+					<p class="counter" id="write">00:00</p>
+				</div>
+				<div class="count-container" id="speak_panel">
+					<p class="count_text">Speak Time :</p>
+					<p class="counter" id="speak">00:00</p>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="credits">
+		<p>Made With <i class="ri-heart-fill" style=" color: #ff4747; "></i> By <a href="" style=" text-decoration: none; color: #795548; font-weight: bold; ">Me</a></p>
+	</div>
+	
+	<div class="settings" id="settings_panel" style=" display: none; ">
+		<div class="settings-contents">
+			<div class="settings-title">
+				<p>Settings</p>
+				<div class="close-dialog" onclick="hideSettingsDialog()"><i class="ri-close-line"></i></div>
+			</div>
+				<div class="dialog-content">
+					<div class="left-dialog">
+						<h3>Themes :</h3>
+						<div class="color-cards">
+							<div class="cards" id="card_1" style=" background: #FFC107; " onclick="changeTheme(1)">
+								<i class="ri-check-line" style="display: block;"></i>
+							</div>
+							<div class="cards" id="card_2" style=" background: #F44336; " onclick="changeTheme(2)">
+								<i class="ri-check-line"></i>
+							</div>
+							<div class="cards" id="card_3" style=" background: #9C27B0; " onclick="changeTheme(3)">
+								<i class="ri-check-line"></i>
+							</div>
+							<div class="cards" id="card_4" style=" background: #2196F3; " onclick="changeTheme(4)">
+								<i class="ri-check-line"></i>
+							</div>
+							<div class="cards" id="card_5" style=" background: #795548; " onclick="changeTheme(5)">
+								<i class="ri-check-line"></i>
+							</div>
+							<div class="cards" id="card_6" style=" background: #607D8B; " onclick="changeTheme(6)">
+								<i class="ri-check-line"></i>
+							</div>
+							<div class="cards" id="card_7" style=" background: #8BC34A; " onclick="changeTheme(7)">
+								<i class="ri-check-line"></i>
+							</div>
+							<div class="cards" id="card_8" style=" background: #009688; " onclick="changeTheme(8)">
+								<i class="ri-check-line"></i>
+							</div>
+							<div class="cards" id="card_9" style=" background: #3F51B5; " onclick="changeTheme(9)">
+								<i class="ri-check-line"></i>
+							</div>
+							<div class="cards" id="card_10" style=" background: #FFEB3B; " onclick="changeTheme(10)">
+								<i class="ri-check-line"></i>
+							</div>
+						</div>
+					</div>
+					<div class="right-dialog">
+						<h3>Show/Hide Counters :</h3>
+						<div class="switch-container">
+							<p>Characters</p>
+							<label class="switch">
+							  <input type="checkbox" id="switch_1" onclick="show_hide_counter(0)" checked>
+							  <span class="slider round"></span>
+							</label>
+						</div>
+						<div class="switch-container">
+							<p>Words</p>
+							<label class="switch">
+							  <input type="checkbox" id="switch_2" onclick="show_hide_counter(1)" checked>
+							  <span class="slider round"></span>
+							</label>
+						</div>
+						<div class="switch-container">
+							<p>Characters (no spaces)</p>
+							<label class="switch">
+							  <input type="checkbox" id="switch_3" onclick="show_hide_counter(2)" checked>
+							  <span class="slider round"></span>
+							</label>
+						</div>
+						<div class="switch-container">
+							<p>Sentences</p>
+							<label class="switch">
+							  <input type="checkbox" id="switch_4" onclick="show_hide_counter(3)" checked>
+							  <span class="slider round"></span>
+							</label>
+						</div>
+						<div class="switch-container">
+							<p>Paragraphs</p>
+							<label class="switch">
+							  <input type="checkbox" id="switch_5" onclick="show_hide_counter(4)" checked>
+							  <span class="slider round"></span>
+							</label>
+						</div>
+						<div class="switch-container">
+							<p>White spaces</p>
+							<label class="switch">
+							  <input type="checkbox" id="switch_6" onclick="show_hide_counter(5)" checked>
+							  <span class="slider round"></span>
+							</label>
+						</div>
+						<div class="switch-container">
+							<p>Vowels</p>
+							<label class="switch">
+							  <input type="checkbox" id="switch_7" onclick="show_hide_counter(6)" checked>
+							  <span class="slider round"></span>
+							</label>
+						</div>
+						<div class="switch-container">
+							<p>Average word lenght</p>
+							<label class="switch">
+							  <input type="checkbox" id="switch_8" onclick="show_hide_counter(7)" checked>
+							  <span class="slider round"></span>
+							</label>
+						</div>
+						<div class="switch-container">
+							<p>Read Time</p>
+							<label class="switch">
+							  <input type="checkbox" id="switch_9" onclick="show_hide_counter(8)" checked>
+							  <span class="slider round"></span>
+							</label>
+						</div>
+						<div class="switch-container">
+							<p>Write Time</p>
+							<label class="switch">
+							  <input type="checkbox" id="switch_10" onclick="show_hide_counter(9)" checked>
+							  <span class="slider round"></span>
+							</label>
+						</div>
+						<div class="switch-container">
+							<p>Speak Time</p>
+							<label class="switch">
+							  <input type="checkbox" id="switch_11" onclick="show_hide_counter(10)" checked>
+							  <span class="slider round"></span>
+							</label>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+	
+</div>
+
+<script src="scripts/main.js"></script>
+
+</body>
+</html>
